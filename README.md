@@ -1,2 +1,3 @@
 # production-ready-serverless-workshop-kits
-Product-serverless workshop at Kits.se
+
+Product-ready serverless workshop at Kits.se
