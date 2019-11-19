@@ -17,13 +17,9 @@
 
 6. Select the runtime as `Node.js 10.x`
 
-7. Under `Role*`, choose `Create new role from template(s)`
+7. Under `Role*`, choose `Create a new role with basic Lambda permissions`
 
-8. Use the role name `iam-hello-world-` followed by your name - e.g. `iam-hello-world-yancui`
-
-9. Use the policy template `Test Harness permissions`
-
-10. Click `Create function`
+8. Click `Create function`
 
 </p></details>
 
