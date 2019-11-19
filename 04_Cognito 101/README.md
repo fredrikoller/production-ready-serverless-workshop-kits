@@ -81,9 +81,7 @@
 
 3. Untick `Generate client secret`, because for now the Javascript SDK does not support client secrets.
 
-4. Tick `Enable sign-in API for server-based authentication (ADMIN_NO_SRP_AUTH)`
-
-![](/images/mod04-010.png)
+4. Tick `Enable username password auth for admin APIs for authentication (ALLOW_ADMIN_USER_PASSWORD_AUTH)`
 
 5. Leave all the permissions as is
 
