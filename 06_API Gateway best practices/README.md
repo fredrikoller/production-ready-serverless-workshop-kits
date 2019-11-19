@@ -10,4 +10,4 @@
 
 5. set up dashboards
 
-For more details, see my [check-list for going live with API Gateway](https://theburningmonk.com/2019/11/check-list-for-going-live-with-api-gateway-and-lambda/).
+For more details, see my [check-list for going live with API Gateway](https://theburningmonk.com/2019/11/check-list-for-going-live-with-api-gateway-and-lambda/) and [where to apply caching in your serverless architecture](https://theburningmonk.com/2019/10/all-you-need-to-know-about-caching-for-serverless-applications/).
