@@ -7,7 +7,7 @@
 <details>
 <summary><b>Add dev configurations</b></summary><p>
 
-1. Go to EC2 console
+1. Go to `Systems Manager` console
 
 2. Go to `Parameter Store` (bottom left)
 
