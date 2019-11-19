@@ -293,7 +293,7 @@ resources:
           WriteCapacityUnits: 1
 ```
 
-When you deploy the serverless project next, the DynamoDB table would be provisioned.
+Deploy the serverless project again, and the DynamoDB table would now be provisioned.
 
 2. Add a file `seed-restaurants.js` to the project root
 
