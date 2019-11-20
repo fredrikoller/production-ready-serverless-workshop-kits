@@ -1250,3 +1250,10 @@ and see that all the tests are passing.
 3. To see how you can include SNS and Kinesis in these end-to-end tests, have a look at [this blog post](https://theburningmonk.com/2019/09/how-to-include-sns-and-kinesis-in-your-e2e-tests/) for 5 approaches.
 
 </p></details>
+
+<details>
+<summary><b>Peeking into SNS and Kinesis messages</b></summary><p>
+
+While working on these changes, we don't have a way to check what our functions are writing to SNS or Kinesis. This is a common problem for teams that leverage these services heavily. To address this, check out the [lumigo-cli](https://www.npmjs.com/package/lumigo-cli). It has commands to [tail-sns](https://www.npmjs.com/package/lumigo-cli#lumigo-cli-tail-sns) and [tail-kinesis](https://www.npmjs.com/package/lumigo-cli#lumigo-cli-tail-kinesis) which lets you see what events are published to these services in real time.
+
+</p></details>
