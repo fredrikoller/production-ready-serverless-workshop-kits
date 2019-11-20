@@ -52,11 +52,49 @@ const getRestaurants = () => {
 
 These changes are enough to ensure correlation IDs are included in the HTTP headers in the request to the `GET /restaurants` endpoint.
 
-4. Deploy the project.
+4. Open `tests/steps/when.js` and modify the `viaHandler` method so that `context` is initialized with a `awsRequestId`, e.g.
 
-5. Once the deployment is done, load the page. And then open the X-Ray console to make sure that the X-Ray tracing is still working.
+```
+const context = { awsRequestId: 'test' }
+```
 
-6. Open the CloudWatch console to check the logs for both `get-index` and `get-restaurants`. You should see that the same correlation ID is included in both logs.
+This will be used to initialize the correlation ID with and you'll see it in the logs when you run the test
+
+`STAGE=dev REGION=us-east-1 npm run test`
+
+```
+  When we invoke the GET / endpoint
+SSM params loaded
+AWS credential loaded
+invoking via handler function get-index
+{"message":"loading index.html...","awsRegion":"us-east-1","environment":"dev","awsRequestId":"test","x-correlation-id":"test","debug-log-enabled":"false","call-chain-length":1,"level":30,"sLevel":"INFO"}
+{"message":"loaded","awsRegion":"us-east-1","environment":"dev","awsRequestId":"test","x-correlation-id":"test","debug-log-enabled":"false","call-chain-length":1,"level":30,"sLevel":"INFO"}
+    ✓ Should return the index page with 8 restaurants (1664ms)
+    
+  ...
+```
+
+5. Open `functions/get-restaurants.js`, require the `@dazn/lambda-powertools-logger` logger at the top
+
+`const Log = require('@dazn/lambda-powertools-logger')`
+
+and then add a single debug log message at the start of the handler, e.g.
+
+```
+module.exports.handler = wrap(async (event, context) => {
+  Log.debug('loading restaurants')
+  ...
+  
+}
+```
+
+6. Redeploy the project.
+
+`npm run sls -- deploy -s dev -r us-east-1`
+
+7. Once the deployment is done, load the page. And then open the X-Ray console to make sure that the X-Ray tracing is still working.
+
+8. Open the CloudWatch console to check the logs for both `get-index` and `get-restaurants`. You should see that the same correlation ID is included in both logs.
 
 </p></details>
 
