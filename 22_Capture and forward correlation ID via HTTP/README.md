@@ -33,7 +33,7 @@ const getRestaurants = () => {
       port: 443,
       path: pathname,
       method: 'GET',
-      headers: Object.assign({}, CorrelationIds.get())
+      headers: Object.assign({}, opts.headers, CorrelationIds.get())
     }
 
     const req = https.request(options, res => {
