@@ -147,15 +147,22 @@ const URL = require('url')
 2. Modify `functions/get-index.js` and replace the `getRestaurants` function with the following
 
 ```javascript
-const getRestaurants = () => {
-  const { hostname, pathname } = URL.parse(restaurantsApiRoot)
+const getRestaurants = async () => {
+  const url = URL.parse(restaurantsApiRoot)
+  const opts = {
+    host: url.hostname, 
+    path: url.pathname
+  }
+
+  aws4.sign(opts)
 
   return new Promise((resolve, reject) => {
     const options = {
-      hostname: hostname,
+      hostname: url.hostname,
       port: 443,
-      path: pathname,
-      method: 'GET'
+      path: url.pathname,
+      method: 'GET',
+      headers: opts.headers
     }
 
     const req = https.request(options, res => {
