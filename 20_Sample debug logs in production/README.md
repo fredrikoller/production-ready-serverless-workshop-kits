@@ -40,7 +40,7 @@ module.exports.handler = wrap(async (event, context) => {
 
 3. Run integration test
 
-`STAGE=dev REGION=eu-west-1 npm run test`
+`STAGE=dev REGION=us-east-1 npm run test`
 
 and see that tests are failing with error messages like this:
 
@@ -93,12 +93,12 @@ const viaHandler = async (event, functionName) => {
 
 5. Rerun integration tests
 
-`STAGE=dev REGION=eu-west-1 npm run test`
+`STAGE=dev REGION=us-east-1 npm run test`
 
 and see that all the tests are now passing
 
 6. Deploy the project
 
-`npm run sls -- deploy -s dev -r eu-west-1`
+`npm run sls -- deploy -s dev -r us-east-1`
 
 </p></details>
