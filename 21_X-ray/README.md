@@ -67,7 +67,7 @@ custom:
 
 4. Deploy the project
 
-`npm run sls -- deploy -s dev -r eu-west-1`
+`npm run sls -- deploy -s dev -r us-east-1`
 
 5. Load up the landing page, and place an order. Then head to the X-Ray console and see what you get.
 
@@ -107,7 +107,7 @@ const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 
 4. Deploy the project
 
-`npm run sls -- deploy -s dev -r eu-west-1`
+`npm run sls -- deploy -s dev -r us-east-1`
 
 5. Load up the landing page, and place an order. Then head to the X-Ray console and see what you get now.
 
@@ -176,7 +176,7 @@ It uses the `https` module to make the HTTP request to the `/restaurants` endpoi
 
 3. Deploy the project
 
-`npm run sls -- deploy -s dev -r eu-west-1`
+`npm run sls -- deploy -s dev -r us-east-1`
 
 4. Load up the landing page, and place an order. Then head to the X-Ray console and now you can see the traces for `get-index` and `get-restaurants` function in one place.
 
@@ -187,7 +187,7 @@ It uses the `https` module to make the HTTP request to the `/restaurants` endpoi
 
 If you run the integration tests now 
 
-`STAGE=dev REGION=eu-west-1 npm run test`
+`STAGE=dev REGION=us-east-1 npm run test`
 
 then you'll see the tests are broken...
 
@@ -251,7 +251,7 @@ const AWS = process.env.LAMBDA_RUNTIME_DIR
 
 5. Rerun the integration tests
 
-`STAGE=dev REGION=eu-west-1 npm run test`
+`STAGE=dev REGION=us-east-1 npm run test`
 
 and see that all the tests should be passing now
 
