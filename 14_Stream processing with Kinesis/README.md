@@ -17,9 +17,9 @@ place-order:
         path: /orders
         method: post
         authorizer:
-          arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${ssm:/workshop-yancui/dev/cognito_user_pool_id}
+          arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${ssm:/${self:service}/${opt:stage}/cognito_user_pool_id}
   environment:
-    order_events_stream: ${ssm:/workshop-yancui/dev/stream_name}
+    order_events_stream: ${ssm:/${self:service}/${opt:stage}/stream_name}
 ```
 
 Notice that this new function references a Kinesis stream, whose name will be parameterised in SSM parameter store. This function also uses the same Cognito User Tool for authorization, as it'll be called directly by the client app.
@@ -30,7 +30,7 @@ Notice that this new function references a Kinesis stream, whose name will be pa
 orderEventsStream:
   Type: AWS::Kinesis::Stream
   Properties: 
-    Name: ${ssm:/workshop-yancui/dev/stream_name}
+    Name: ${ssm:/${self:service}/${opt:stage}/stream_name}
     ShardCount: 1
 ```
 
@@ -870,8 +870,8 @@ environment:
       - - "https://"
         - Ref: ApiGatewayRestApi
         - ".execute-api.${opt:region}.amazonaws.com/${opt:stage}/orders"
-  cognito_user_pool_id: ${ssm:/workshop-yancui/dev/cognito_user_pool_id}
-  cognito_client_id: ${ssm:/workshop-yancui/dev/cognito_web_client_id}
+  cognito_user_pool_id: ${ssm:/${self:service}/${opt:stage}/cognito_user_pool_id}
+  cognito_client_id: ${ssm:/${self:service}/${opt:stage}/cognito_web_client_id}
 ```
 
 5. Deploy the project
@@ -893,8 +893,8 @@ Load the landnig page in the browser and click on one of the restaurants to orde
 restaurantNotificationTopic:
   Type: AWS::SNS::Topic
   Properties: 
-    DisplayName: ${ssm:/workshop-yancui/dev/restaurant_topic_name}
-    TopicName: ${ssm:/workshop-yancui/dev/restaurant_topic_name}
+    DisplayName: ${ssm:/${self:service}/${opt:stage}/restaurant_topic_name}
+    TopicName: ${ssm:/${self:service}/${opt:stage}/restaurant_topic_name}
 ```
 
 2. Add a new parameter `/${service-name}/dev/restaurant_topic_name` in SSM parameter store with the value `restaurant-notification-dev-` followed by your name, e.g. `restaurant-notification-dev-yancui`
@@ -973,7 +973,7 @@ notify-restaurant:
             - orderEventsStream
             - Arn
   environment:
-    order_events_stream: ${ssm:/workshop-yancui/dev/stream_name}
+    order_events_stream: ${ssm:/${self:service}/${opt:stage}/stream_name}
     restaurant_notification_topic: 
       Ref: restaurantNotificationTopic
 ```
