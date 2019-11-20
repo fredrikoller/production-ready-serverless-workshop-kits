@@ -101,7 +101,7 @@ module.exports.handler = async (event, context) => {
 }
 ```
 
-7. Go to EC2 console
+7. Go to `Systems Manager` console
 
 8. Go to Parameter Store (bottom left)
 
